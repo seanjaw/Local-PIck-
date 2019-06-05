@@ -1,2 +1,2 @@
-# Local-PIck-
+# Local Pick-
 Discover local restaurants around you
