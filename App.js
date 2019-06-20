@@ -9,17 +9,17 @@ export default class App extends React.Component {
     };
 
     var that = this
-    this.registerUser('sjaw94@gmail.com', 'fakepassword')
+    // this.registerUser('sjaw94@gmail.com', 'fakepassword')
 
     f.auth().onAuthStateChanged(function (user) {
       if (user) {
         that.setState({
-          loggedin:true
+          loggedin: true
         });
         console.log('logged in')
       } else {
         that.setState({
-          loggedin:false
+          loggedin: false
         });
         console.log('logged out')
       }
@@ -42,6 +42,8 @@ export default class App extends React.Component {
   }
 
   loginUser = async (email, password) => {
+    console.log('email', email)
+    console.log('password', password)
     if (email != '' && password != '') {
       //
       try {
@@ -58,60 +60,65 @@ export default class App extends React.Component {
   }
 
   render() {
-  return (
-    <View style={styles.container}>
-      {this.state.loggedin == true ? (
-        <View>
-          <TouchableHighlight
-            onPress = { ()=> this.signUserOut()}
-            style={{backgroundColor: 'red'}}>
-            <Text>Log Out</Text>
-          </TouchableHighlight>
-          <Text>Logged in...</Text>
-        </View>
-      ) : (
-        <View>
-
-          {this.state.emailloginview == true ? (
-
+    return (
+      <View style={styles.container}>
+        {this.state.loggedin == true ? (
+          <View>
+            <TouchableHighlight
+              onPress={() => this.signUserOut()}
+              style={{ backgroundColor: 'red' }}>
+              <Text>Log Out</Text>
+            </TouchableHighlight>
+          </View>
+        ) : (
             <View>
-              <Text>Email:</Text>
-              <TextInput
-                onChangeText={(text) => this.setState({email:text})}
-                value={this.state.email}
-              />
-              <Text>Password:</Text>
-              <TextInput
-                onChangeText={(text) => this.setState({pass:text})}
-                secureTextEntry={true}
-                value={this.state.pass}
-              />
-              <TouchableHighlight
-              onPress = { ()=> this.loginUser(this.state.email, this.state.pass)}
-              style={{backgroundColor: 'green'}}>
-              <Text>Log In</Text>
-              </TouchableHighlight>
+
+              {this.state.emailloginview == true ? (
+
+                <View>
+                  <Text>Email:</Text>
+                  <TextInput
+                    onChangeText={(text) => this.setState({ email: text })}
+                    value={this.state.email}
+                  />
+                  <Text>Password:</Text>
+                  <TextInput
+                    onChangeText={(text) => this.setState({ pass: text })}
+                    secureTextEntry={true}
+                    value={this.state.pass}
+                  />
+                  <TouchableHighlight
+                    onPress={() => this.loginUser(this.state.email, this.state.pass)}
+                    style={{ backgroundColor: 'green' }}>
+                    <Text>Log In</Text>
+                  </TouchableHighlight>
+                </View>
+
+              ) : (
+                  <View>
+                    <TouchableHighlight
+                      onPress={() => this.setState({ emailloginview: true })}
+                      style={{ backgroundColor: 'green' }}>
+                      <Text style={{ color: 'white' }}>LOGIN</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                      onPress={() => this.setState({ signupview: true })}
+                      style={{ backgroundColor: 'green' }}>
+                      <Text style={{ color: 'white' }}>SIGN UP</Text>
+                    </TouchableHighlight>
+                  </View>
+                )
+              }
+
+
+
+
             </View>
+          )}
 
-          ) : (
-            <View></View>
-          )
-          }
-
-          
-
-          <TouchableHighlight 
-          onPress={()=>this.setState({emailloginview:true})}
-          style = {{backgroundColor: 'green'}}>
-          <Text style = {{color:'white'}}>Login With Email</Text>
-          </TouchableHighlight>
-
-        </View>
-      )} 
-     
-    </View>
-  );
-}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
