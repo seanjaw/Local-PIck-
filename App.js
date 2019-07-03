@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, TextInput } from 'react-native';
 import { f, auth, database } from './config/config.js';
+import  BottomTabNavigator from './app/bottomtabnavigator';
+
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -61,62 +64,62 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.state.loggedin == true ? (
-          <View>
-            <TouchableHighlight
-              onPress={() => this.signUserOut()}
-              style={{ backgroundColor: 'red' }}>
-              <Text>Log Out</Text>
-            </TouchableHighlight>
-          </View>
-        ) : (
-            <View>
+      // <View style={styles.container}>
+      //   {this.state.loggedin == true ? (
+      //     <View>
+      //       <TouchableHighlight
+      //         onPress={() => this.signUserOut()}
+      //         style={{ backgroundColor: 'red' }}>
+      //         <Text>Log Out</Text>
+      //       </TouchableHighlight>
+      //     </View>
+      //   ) : (
+      //       <View>
 
-              {this.state.emailloginview == true ? (
+      //         {this.state.emailloginview == true ? (
 
-                <View>
-                  <Text>Email:</Text>
-                  <TextInput
-                    onChangeText={(text) => this.setState({ email: text })}
-                    value={this.state.email}
-                  />
-                  <Text>Password:</Text>
-                  <TextInput
-                    onChangeText={(text) => this.setState({ pass: text })}
-                    secureTextEntry={true}
-                    value={this.state.pass}
-                  />
-                  <TouchableHighlight
-                    onPress={() => this.loginUser(this.state.email, this.state.pass)}
-                    style={{ backgroundColor: 'green' }}>
-                    <Text>Log In</Text>
-                  </TouchableHighlight>
-                </View>
+      //           <View>
+      //             <Text>Email:</Text>
+      //             <TextInput
+      //               onChangeText={(text) => this.setState({ email: text })}
+      //               value={this.state.email}
+      //             />
+      //             <Text>Password:</Text>
+      //             <TextInput
+      //               onChangeText={(text) => this.setState({ pass: text })}
+      //               secureTextEntry={true}
+      //               value={this.state.pass}
+      //             />
+      //             <TouchableHighlight
+      //               onPress={() => this.loginUser(this.state.email, this.state.pass)}
+      //               style={{ backgroundColor: 'green' }}>
+      //               <Text>Log In</Text>
+      //             </TouchableHighlight>
+      //           </View>
 
-              ) : (
-                  <View>
-                    <TouchableHighlight
-                      onPress={() => this.setState({ emailloginview: true })}
-                      style={{ backgroundColor: 'green' }}>
-                      <Text style={{ color: 'white' }}>LOGIN</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                      onPress={() => this.setState({ signupview: true })}
-                      style={{ backgroundColor: 'green' }}>
-                      <Text style={{ color: 'white' }}>SIGN UP</Text>
-                    </TouchableHighlight>
-                  </View>
-                )
-              }
-
-
+      //         ) : (
+      //             <View>
+      //               <TouchableHighlight
+      //                 onPress={() => this.setState({ emailloginview: true })}
+      //                 style={{ backgroundColor: 'green' }}>
+      //                 <Text style={{ color: 'white' }}>LOGIN</Text>
+      //               </TouchableHighlight>
+      //               <TouchableHighlight
+      //                 onPress={() => this.setState({ signupview: true })}
+      //                 style={{ backgroundColor: 'green' }}>
+      //                 <Text style={{ color: 'white' }}>SIGN UP</Text>
+      //               </TouchableHighlight>
+      //             </View>
+      //           )
+      //         }
 
 
-            </View>
-          )}
 
-      </View>
+
+      //       </View>
+      //     )}
+      // </View>
+      <BottomTabNavigator/>
     );
   }
 }
@@ -129,3 +132,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
