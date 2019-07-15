@@ -1,7 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, TextInput } from 'react-native';
 import { f, auth, database } from './config/config.js';
-import  BottomTabNavigator from './app/bottomtabnavigator';
+import { createStackNavigator, createAppContainer } from 'react-navigation'; // Version can be specified in package.json
+// import  BottomTabNavigator from './app/bottomtabnavigator';
+import Home from './app/screens/home';
+import Profile from './app/screens/profile';
+import Saved from './app/screens/saved';
+import BottomTabNavigator from './app/bottomtabnavigator.js';
 
 
 export default class App extends React.Component {
@@ -60,7 +65,11 @@ export default class App extends React.Component {
     else {
       alert('missing email or password')
     }
+
+    
   }
+
+  
 
   render() {
     return (
@@ -119,7 +128,13 @@ export default class App extends React.Component {
       //       </View>
       //     )}
       // </View>
-      <BottomTabNavigator/>
+      <View style ={{flex:1}}>
+          <BottomTabNavigator/>
+      </View>
+
+      // <BottomTabNavigator/>
+      
+  
     );
   }
 }
@@ -133,3 +148,18 @@ const styles = StyleSheet.create({
   },
 });
 
+
+
+
+const RootStack = createStackNavigator(
+  {
+    Home: Home,
+    Profile: Profile,
+    Saved: Saved
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
+
+const AppContainer = createAppContainer(RootStack);
