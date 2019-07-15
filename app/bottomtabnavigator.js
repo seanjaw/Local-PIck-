@@ -14,7 +14,7 @@ const MainStack = createBottomTabNavigator(
                 name="ios-home"
                 color={tintColor}
                 size={24}
-            />
+                />
         )
     })
     },

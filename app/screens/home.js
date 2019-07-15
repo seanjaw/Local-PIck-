@@ -1,15 +1,12 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View, Image } from 'react-native'; 
+import { FlatList, StyleSheet, Text, View, Image, Button } from 'react-native';
+import Header from '../../app/header';
+class Home extends React.Component {
 
-class Home extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    render()
-    {
-        return(
-            <View>
-                <Text>Hi</Text>
+    render() {
+        return (
+            <View style={{ flex: 1 }}>    
+                <Header/>
             </View>
         )
     }
