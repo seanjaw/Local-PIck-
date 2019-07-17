@@ -1,24 +1,24 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View, Image, Button } from 'react-native'; 
+import { FlatList, StyleSheet, Text, View, Image, Button } from 'react-native';
+import Header from '../../app/header';
+class Profile extends React.Component {
+    constructor(props){
+        super(props); 
+        this.state = {
+            loggedIn: false 
+        }
+    }
 
-class Profile extends React.Component{
-    static navigationOptions = {
-        title: 'PROFILE'
-      };
-    render()
-    {
-        return(
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {/* <Text>Profile!</Text>
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-        <Button
-          title="Go to Saved"
-          onPress={() => this.props.navigation.navigate('Saved')}
-        /> */}
-      </View>
+
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+                <Header />
+                <View style={{ flex: 1 }}>
+                    <Text>Hi</Text>
+                    
+                </View>
+            </View>
         )
     }
 }

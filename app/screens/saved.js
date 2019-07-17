@@ -1,11 +1,8 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View, Button, Image } from 'react-native'; 
-
+import Header from '../../app/header';
 class Saved extends React.Component{
 
-    static navigationOptions = {
-        title: 'SAVED'
-      };
     render()
     {
         return(
