@@ -27,7 +27,7 @@ export default class App extends React.Component {
         console.log('logged in')
       } else {
         that.setState({
-          loggedin: false
+          loggedin: true
         });
         console.log('logged out')
       }
@@ -66,75 +66,83 @@ export default class App extends React.Component {
       alert('missing email or password')
     }
 
-    
+
   }
 
-  
+
 
   render() {
     return (
-      // <View style={styles.container}>
-      //   {this.state.loggedin == true ? (
-      //     <View>
-      //       <TouchableHighlight
-      //         onPress={() => this.signUserOut()}
-      //         style={{ backgroundColor: 'red' }}>
-      //         <Text>Log Out</Text>
-      //       </TouchableHighlight>
-      //     </View>
-      //   ) : (
-      //       <View>
+      <View style={styles.container}>
+        {this.state.loggedin == true ? (
+          // <View>
+          //   <TouchableHighlight
+          //     onPress={() => this.signUserOut()}
+          //     style={{ backgroundColor: 'red' }}>
+          //     <Text>Log Out</Text>
+          //   </TouchableHighlight>
+          // </View>
+       
+          // <BottomTabNavigator/>
+          <View style= {{flex:1}}>
+            {/* <AppContainer/> */}
+            <BottomTabNavigator/>
+          </View>
+       
+   
 
-      //         {this.state.emailloginview == true ? (
+        ) : (
+            <View>
 
-      //           <View>
-      //             <Text>Email:</Text>
-      //             <TextInput
-      //               onChangeText={(text) => this.setState({ email: text })}
-      //               value={this.state.email}
-      //             />
-      //             <Text>Password:</Text>
-      //             <TextInput
-      //               onChangeText={(text) => this.setState({ pass: text })}
-      //               secureTextEntry={true}
-      //               value={this.state.pass}
-      //             />
-      //             <TouchableHighlight
-      //               onPress={() => this.loginUser(this.state.email, this.state.pass)}
-      //               style={{ backgroundColor: 'green' }}>
-      //               <Text>Log In</Text>
-      //             </TouchableHighlight>
-      //           </View>
+              {this.state.emailloginview == true ? (
 
-      //         ) : (
-      //             <View>
-      //               <TouchableHighlight
-      //                 onPress={() => this.setState({ emailloginview: true })}
-      //                 style={{ backgroundColor: 'green' }}>
-      //                 <Text style={{ color: 'white' }}>LOGIN</Text>
-      //               </TouchableHighlight>
-      //               <TouchableHighlight
-      //                 onPress={() => this.setState({ signupview: true })}
-      //                 style={{ backgroundColor: 'green' }}>
-      //                 <Text style={{ color: 'white' }}>SIGN UP</Text>
-      //               </TouchableHighlight>
-      //             </View>
-      //           )
-      //         }
+                <View>
+                  <Text>Email:</Text>
+                  <TextInput
+                    onChangeText={(text) => this.setState({ email: text })}
+                    value={this.state.email}
+                  />
+                  <Text>Password:</Text>
+                  <TextInput
+                    onChangeText={(text) => this.setState({ pass: text })}
+                    secureTextEntry={true}
+                    value={this.state.pass}
+                  />
+                  <TouchableHighlight
+                    onPress={() => this.loginUser(this.state.email, this.state.pass)}
+                    style={{ backgroundColor: 'green' }}>
+                    <Text>Log In</Text>
+                  </TouchableHighlight>
+                </View>
+
+              ) : (
+                  <View>
+                    <TouchableHighlight
+                      onPress={() => this.setState({ emailloginview: true })}
+                      style={{ backgroundColor: 'green' }}>
+                      <Text style={{ color: 'white' }}>LOGIN</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                      onPress={() => this.setState({ signupview: true })}
+                      style={{ backgroundColor: 'green' }}>
+                      <Text style={{ color: 'white' }}>SIGN UP</Text>
+                    </TouchableHighlight>
+                  </View>
+                )
+              }
 
 
 
 
-      //       </View>
-      //     )}
-      // </View>
-      <View style ={{flex:1}}>
-          <BottomTabNavigator/>
+            </View>
+          )
+        }
       </View>
 
-      // <BottomTabNavigator/>
-      
-  
+
+
+
+
     );
   }
 }
@@ -142,24 +150,10 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
 
 
-
-
-const RootStack = createStackNavigator(
-  {
-    Home: Home,
-    Profile: Profile,
-    Saved: Saved
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
-const AppContainer = createAppContainer(RootStack);
