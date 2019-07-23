@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, TextInput} from 'react-native';
 import { f, auth, database } from './config/config.js';
-import { createStackNavigator, createAppContainer } from 'react-navigation'; // Version can be specified in package.json
-// import  BottomTabNavigator from './app/bottomtabnavigator';
-import Home from './app/screens/home';
-import Profile from './app/screens/profile';
-import Saved from './app/screens/saved';
 import BottomTabNavigator from './app/bottomtabnavigator.js';
+// import result from './config/yelp';
+import axios from 'axios';
+import config from './config/yelp';
+
 
 
 export default class App extends React.Component {
@@ -18,7 +17,6 @@ export default class App extends React.Component {
 
     var that = this
     // this.registerUser('sjaw94@gmail.com', 'fakepassword')
-
     f.auth().onAuthStateChanged(function (user) {
       if (user) {
         that.setState({
@@ -33,6 +31,9 @@ export default class App extends React.Component {
       }
     });
   }
+
+
+
   registerUser = (email, password) => {
     console.log(email, password)
     auth.createUserWithEmailAndPassword(email, password)
@@ -69,7 +70,10 @@ export default class App extends React.Component {
 
   }
 
-
+  componentWillMount(){
+    axios.get('https://api.yelp.com/v3/businesses/search', config)
+    .then(response => console.log(response.data.businesses[0].image_url));
+    }
 
   render() {
     return (
@@ -88,7 +92,7 @@ export default class App extends React.Component {
             {/* <AppContainer/> */}
             <BottomTabNavigator/>
           </View>
-       
+          
    
 
         ) : (
@@ -151,8 +155,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    // alignItems: 'center',
-    // justifyContent: 'center',
+
   },
 });
 
