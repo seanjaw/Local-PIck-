@@ -5,11 +5,9 @@ class Header extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>    
                 <View style={{ height: 90, paddingTop: 30, backgroundColor: 'black', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style ={{color: 'white' , borderColor: 'white', borderWidth: 0.5, width: 100, textAlign: 'center'}}>Local Pick</Text>
+                    <Text style ={{fontSize: 25, color: 'white' , borderColor: 'white', borderWidth: 1, width: 180, textAlign: 'center'}}>Local Pick</Text>
                 </View>
-            </View>
         )
     }
 }
