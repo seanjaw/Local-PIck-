@@ -25,7 +25,7 @@ export default class App extends React.Component {
         console.log('logged in')
       } else {
         that.setState({
-          loggedin: true
+          loggedin: false
         });
         console.log('logged out')
       }
@@ -70,12 +70,52 @@ export default class App extends React.Component {
 
   }
 
+  loginDummyUser = async (email, password) => {
+    console.log('email', email)
+    console.log('password', password)
+    if (email != '' && password != '') {
+      //
+      try {
+        let user = await auth.signInWithEmailAndPassword(email, password);
+        console.log(user);
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
+    else {
+      alert('missing email or password')
+    }
+
+
+  }
+  // writeUserData = ('Y7myB7HcoHMIcVimNbI1SHkQgch2', '', email, imageUrl) => {
+  //   firebase.database().ref('users/' + 'Y7myB7HcoHMIcVimNbI1SHkQgch2').set({
+  //     email: name,
+  //     name: email,
+  //     username: imageUrl
+  //   });
+  // }
+
   componentWillMount(){
     axios.get('https://api.yelp.com/v3/businesses/search', config)
     .then(response => console.log(response.data.businesses[0].image_url));
+    database.ref('users/001').set(
+      {
+        name: 'Sean Jaw',
+        age: 4 
+      }
+    ).then(() =>{
+      console.log('Inserted!');
+    })
+    .catch(()=>{
+      console.log(error);
+    })
     }
 
   render() {
+    var user = f.auth().currentUser;
+    console.log('this is the current user', user)
     return (
       <View style={styles.container}>
         {this.state.loggedin == true ? (
@@ -114,15 +154,17 @@ export default class App extends React.Component {
                   />
                   <TouchableHighlight
                     onPress={() => this.loginUser(this.state.email, this.state.pass)}
+
                     style={{ backgroundColor: 'green' }}>
                     <Text>Log In</Text>
                   </TouchableHighlight>
                 </View>
 
               ) : (
-                  <View>
+                  <View style ={{paddingTop:40}}>
                     <TouchableHighlight
-                      onPress={() => this.setState({ emailloginview: true })}
+                      // onPress={() => this.setState({ emailloginview: true })}
+                      onPress={() => this.loginDummyUser('sjaw94@gmail.com', 'password')}
                       style={{ backgroundColor: 'green' }}>
                       <Text style={{ color: 'white' }}>LOGIN</Text>
                     </TouchableHighlight>

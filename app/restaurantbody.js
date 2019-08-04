@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableHighlight } from 'react-native';
 import axios from 'axios';
 import config from '../config/yelp';
 
@@ -16,9 +16,10 @@ class RestaurantBody extends Component {
     }
     render() {
         return (
-            <View style={{ backgroundColor: 'black', height: 160 }}>
-                <Image style={{height:160}} source={this.state.restaurantPic ? { uri: this.state.restaurantPic } : null} />
-            </View>
+                <View style={{ backgroundColor: 'black', height: 160 }}>
+                    <Image style={{ height: 160 }} source={this.state.restaurantPic ? { uri: this.state.restaurantPic } : null} />
+                </View>
+
         );
     }
 }
