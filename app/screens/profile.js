@@ -1,6 +1,5 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View, Image, Button } from 'react-native'; 
-import Header from '../../app/header';
 
 class Profile extends React.Component{
     static navigationOptions = {
@@ -19,7 +18,7 @@ class Profile extends React.Component{
           title="Go to Saved"
           onPress={() => this.props.navigation.navigate('Saved')}
         /> */}
-        <Header/>
+        {/* <Header/> */}
       </View>
         )
     }
