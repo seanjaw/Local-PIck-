@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 import Home from './screens/home';
 import Profile from './screens/profile'

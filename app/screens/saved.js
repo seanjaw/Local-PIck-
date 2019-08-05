@@ -1,6 +1,5 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View, Button, Image } from 'react-native'; 
-import Header from '../../app/header';
 
 class Saved extends React.Component{
 
@@ -11,7 +10,6 @@ class Saved extends React.Component{
     {
         return(
             <View style={{ flex: 1}}>
-              <Header/>
         <Text>Saved!</Text>
         <Button
           title="Go to Home"
