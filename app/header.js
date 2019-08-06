@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-class Logo extends React.Component {
+class Header extends React.Component {
 
     render() {
         return (
-                <View style={{ backgroundColor: 'black', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ height: 90, paddingTop: 30, backgroundColor: 'black', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style ={{fontSize: 25, color: 'white' , borderColor: 'white', borderWidth: 1, width: 180, textAlign: 'center'}}>Local Pick</Text>
                 </View>
         )
@@ -13,4 +13,4 @@ class Logo extends React.Component {
 }
 
 
-export default Logo; 
+export default Header; 

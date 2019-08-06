@@ -1,9 +1,9 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import RestaurantContainer from '../../app/restaurantcontainer';
+// import RestaurantContainer from '../../app/restaurantcontainer';
 import { f, auth, database, storage } from '../../config/config';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { Header, Icon, Button  } from 'react-native-elements';
+import { Header, Icon, Button } from 'react-native-elements';
 import Logo from '../logo';
 class Home extends React.Component {
 
@@ -21,10 +21,10 @@ class Home extends React.Component {
     }
 
     loadFeed = () => {
-        this.setState({
-            refresh: true,
-            photo_feed: []
-        });
+        // this.setState({
+        //     refresh: true,
+        //     photo_feed: []
+        // });
 
         var that = this;
 
@@ -34,15 +34,20 @@ class Home extends React.Component {
             var photo_feed = that.state.photo_feed;
             console.log('this is photo feed', photo_feed)
             console.log('this is data', data)
-            for (var photo in data){
+            for (var photo in data) {
                 var photoObj = data[photo]
                 photo_feed.push({
                     id: photoObj.keyid,
                     url: photoObj.url
                 })
             }
-            
+            that.setState({
+                photo_feed: photo_feed
+            })
+
             console.log('this is photo feed', photo_feed)
+            console.log('this is data', data)
+
             // for (var photo in data) {
             //     var photoObj = data[photo];
 
@@ -64,41 +69,54 @@ class Home extends React.Component {
             //     }).catch(error => console.log());
 
             // }
-        
-            
+
+
         }).catch(error => console.log())
+        // this.setState({
+        //     photo_feed
+        // })
+        console.log('this is this.data', this.data)
+        // console.log('this is this.state.photo_feed[0].id', this.state.photo_feed[0].id)
+
     }
     render() {
-        console.log('home component has been rendered')
+
         return (
-            <View style={{ flex: 1, backgroundColor: '#5A5A5A' }}>
+            <View style={{ flex: 1, backgroundColor: '#5A5A5A'}}>
                 <Header containerStyle={{
                     backgroundColor: 'black',
                     borderBottomWidth: 0,
-                    }}
-                    centerComponent={<Logo/>}
+                }}
+                    centerComponent={<Logo />}
                     rightComponent={<Button
                         onPress={() => this.props.navigation.navigate('MyModal')}
-                        type = "clear"
+                        type="clear"
                         icon={
-                          <Icon
-                            name="add"
-                            // size={15}
-                            color="white"
-                          />
+                            <Icon
+                                name="add"
+                                color="white"
+                            />
                         }
-                      />}
+                    />}
+                />
+
+                <FlatList
+                    contentContainerStyle = {{ alignItems: 'center'}}
+                    data={this.state.photo_feed}
+                    renderItem={({ item }) =>
+                        <View style={{paddingTop: 15, backgroundColor: '#5A5A5A', height: 200, width: 335}}>
+                            <View style={{ backgroundColor: 'black', height: 40 }}>
+                                <Text style={{ paddingLeft: 10, color: 'white' }}>{item.id}</Text>
+                            </View>
+                            <TouchableOpacity>
+                                <View style={{ backgroundColor: 'black', height: 160 }}>
+                                    <Image style={{ height: 160 }} source={item.url ? { uri: item.url } : null} />
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    }
                 />
             
-                <View style={{ alignItems: 'center' }}>
-                    {/* <RestaurantContainer /> */}
-                    {/* <FlatList
-                    data = {this.state.photo_feed}
-                    renderItem = {{item} => }
-                    
-                    /> */}
-                </View>
-
             </View>
         )
     }
