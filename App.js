@@ -115,7 +115,7 @@ export default class App extends React.Component {
 
   render() {
     var user = f.auth().currentUser;
-    console.log('this is the current user', user)
+    // console.log('this is the current user', user)
     return (
       <View style={styles.container}>
         {this.state.loggedin == true ? (
