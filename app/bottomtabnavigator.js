@@ -1,9 +1,10 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
+import { createBottomTabNavigator, createStackNavigator, createAppContainer } from 'react-navigation'
 import Home from './screens/home';
 import Profile from './screens/profile'
 import Saved from './screens/saved'
 import Icon from 'react-native-vector-icons/Ionicons';
+import ModalScreen from './modalscreen';
 
 const MainStack = createBottomTabNavigator(
   {
@@ -55,7 +56,25 @@ const MainStack = createBottomTabNavigator(
   }
 
 )
-const BottomTabNavigator = createAppContainer(MainStack);
+
+
+const RootStack = createStackNavigator(
+  {
+    Main: {
+      screen: MainStack,
+    },
+    MyModal: {
+      screen: ModalScreen,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
+// const BottomTabNavigator = createAppContainer(MainStack);
+
+const BottomTabNavigator = createAppContainer(RootStack);
 
 
 export default BottomTabNavigator;
