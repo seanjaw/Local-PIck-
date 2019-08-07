@@ -1,17 +1,20 @@
 import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; // 1.0.0-beta.27
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button } from 'react-native'
+import axios from 'axios';
+import config from '../config/yelp';
+import { f, auth, database, storage } from '../config/config';
 
 class ModalScreen extends React.Component {
     state = {
-        query:''
+        name:'',
     }
-    handleQuery = (text) => {
-        this.setState({ query: text })
+    handleName = (text) => {
+        this.setState({ name: text })
     }
  
-    addQuery = (query) => {
-        console.log('query: ' + this.state.query)
+    addName = (name) => {
+        console.log('name: ' + this.state.name)
     }
 
     goBack = () => {
@@ -19,21 +22,50 @@ class ModalScreen extends React.Component {
     }
 
     combinefunction = () => {
-        this.addQuery();
+        this.addName();
         this.goBack();
+        this.makeYelpSearch();
     }
 
+    // async componentDidMount() {
+    //     // const restaurantPic = await axios.get('https://api.yelp.com/v3/businesses/search' + '?term=' + this.state.name + '&location=irvine' , config)
+    //     // console.log(restaurantPic.data.businesses[0].name)
+    //     // console.log(restaurantPic.data.businesses[0].image_url)
+    //     // this.setState({
+    //     //     url: restaurantPic.data.businesses[0].image_url,
+    //     //     name: restaurantPic.data.businesses[0].name
+    //     // })
+    // }
 
+     makeYelpSearch = async () => {
+        restaurantPic = await axios.get('https://api.yelp.com/v3/businesses/search' + '?term=' + this.state.name + '&location=irvine' , config)
+        var name = restaurantPic.data.businesses[0].name
+        var imageUrl = restaurantPic.data.businesses[0].image_url
+         console.log('this is name after search',restaurantPic.data.businesses[0].name)
+        console.log('this is url after search', restaurantPic.data.businesses[0].image_url)
+        this.writeUserData(name,imageUrl);
+
+
+    }
+
+    //send name and image url to the database
+    writeUserData = async (name, imageUrl) => {
+        await f.database().ref('photos/' + 'photoex').set({
+          keyid: name,
+          url: imageUrl,
+        });
+      }
     render() {
+        console.log(this.state)
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black'}}>
                 <Text style={{ fontSize: 30, color: 'white' }}>ADD RESTAURANT</Text>
                 <TextInput style={styles.input}
                     underlineColorAndroid="transparent"
-                    placeholder="Email"
+                    placeholder="Name"
                     placeholderTextColor="white"
                     autoCapitalize="none"                    
-                    onChangeText={this.handleQuery} />
+                    onChangeText={this.handleName} />
 
                 <TouchableOpacity
                     style={styles.submitButton}

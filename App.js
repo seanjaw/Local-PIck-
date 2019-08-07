@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, TextInput} from 'react-native';
 import { f, auth, database } from './config/config.js';
 import BottomTabNavigator from './app/bottomtabnavigator.js';
-// import result from './config/yelp';
 import axios from 'axios';
 import config from './config/yelp';
 
@@ -97,21 +96,21 @@ export default class App extends React.Component {
   //   });
   // }
 
-  componentWillMount(){
-    axios.get('https://api.yelp.com/v3/businesses/search', config)
-    .then(response => console.log(response.data.businesses[0].image_url));
-    database.ref('users/001').set(
-      {
-        name: 'Sean Jaw',
-        age: 4 
-      }
-    ).then(() =>{
-      console.log('Inserted!');
-    })
-    .catch(()=>{
-      console.log(error);
-    })
-    }
+  // componentWillMount(){
+  //   axios.get('https://api.yelp.com/v3/businesses/search', config)
+  //   .then(response => console.log(response.data.businesses[0].image_url));
+  //   database.ref('users/001').set(
+  //     {
+  //       name: 'Sean Jaw',
+  //       age: 4 
+  //     }
+  //   ).then(() =>{
+  //     console.log('Inserted!');
+  //   })
+  //   .catch(()=>{
+  //     console.log(error);
+  //   })
+  //   }
 
   render() {
     var user = f.auth().currentUser;
