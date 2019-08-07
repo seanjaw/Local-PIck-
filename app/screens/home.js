@@ -32,8 +32,8 @@ class Home extends React.Component {
             const exists = (snapshot.val() !== null);
             if (exists) data = snapshot.val();
             var photo_feed = that.state.photo_feed;
-            console.log('this is photo feed', photo_feed)
-            console.log('this is data', data)
+            // console.log('this is photo feed', photo_feed)
+            // console.log('this is data', data)
             for (var photo in data) {
                 var photoObj = data[photo]
                 photo_feed.push({
@@ -45,8 +45,8 @@ class Home extends React.Component {
                 photo_feed: photo_feed
             })
 
-            console.log('this is photo feed', photo_feed)
-            console.log('this is data', data)
+            // console.log('this is photo feed', photo_feed)
+            // console.log('this is data', data)
 
             // for (var photo in data) {
             //     var photoObj = data[photo];
@@ -72,11 +72,8 @@ class Home extends React.Component {
 
 
         }).catch(error => console.log())
-        // this.setState({
-        //     photo_feed
-        // })
-        console.log('this is this.data', this.data)
-        // console.log('this is this.state.photo_feed[0].id', this.state.photo_feed[0].id)
+   
+        // console.log('this is this.data', this.data)
 
     }
     render() {
