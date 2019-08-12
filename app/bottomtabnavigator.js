@@ -8,7 +8,7 @@ import ModalScreen from './modalscreen';
 
 const MainStack = createBottomTabNavigator(
   {
-    Home: { screen: Home,
+    Home: { screen: Profile,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
             <Icon
