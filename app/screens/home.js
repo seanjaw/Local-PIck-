@@ -91,7 +91,7 @@ class Home extends React.Component {
     }
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: '#5A5A5A' }}>
+            <View style={{ flex: 1, backgroundColor: '#2C2A2A' }}>
                 <Header containerStyle={{
                     backgroundColor: 'black',
                     borderBottomWidth: 0,
@@ -116,7 +116,7 @@ class Home extends React.Component {
                     data={this.state.photo_feed}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) =>
-                        <View style={{ paddingTop: 15, backgroundColor: '#5A5A5A', height: 200, width: 335 }}>
+                        <View style={{ paddingTop: 15, backgroundColor: '#2C2A2A', height: 200, width: 335 }}>
                             <View style={{ backgroundColor: 'black', height: 40, justifyContent: 'center' }}>
                                 <Text style={{ paddingLeft: 10, color: 'white', fontSize: 18 }}>{item.id}</Text>
                             </View>

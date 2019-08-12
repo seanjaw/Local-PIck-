@@ -47,7 +47,7 @@ class ModalScreen extends React.Component {
 
     //send name and image url to the database
     writeUserData = async (name, imageUrl) => {
-        await f.database().ref('photos/' + 'photoex').set({
+        await f.database().ref('photos/' + 'photo5').set({
             keyid: name,
             url: imageUrl,
 
