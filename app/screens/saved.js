@@ -3,24 +3,19 @@ import { FlatList, StyleSheet, Text, View, Image } from 'react-native';
 import { f, auth, database, storage } from '../../config/config';
 import { Header, Icon, Button } from 'react-native-elements';
 import Logo from '../logo';
+// import {increment} from '../actions/index';
+// import {useSelector, useDispatch} from 'react-redux';
+// import { connect } from 'react-redux';
 
 class Saved extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      photo_feed: [],
-      refresh: false,
-      loading: true,
-      saved_flatlist:{}
-    }
-  }
 
   static navigationOptions = {
     title: 'SAVED'
   };
 
+
   componentDidMount = () => {
-    this.loadFeed();
+    // this.loadFeed();
     console.log('saved component mounted')
   }
 
@@ -63,8 +58,11 @@ class Saved extends React.Component {
   }
 
   render() {
+    // const counter = useSelector(state => state.counter);
+    // const dispatch = useDispatch();
+    // dispatch(displayUserFlatlist(['hi']))
 
-    console.log('this is the state', this.state)
+    // console.log('this is the state', counter)
     return (
       <View style={{ flex: 1, backgroundColor: '#2C2A2A' }}>
         <Header containerStyle={{
@@ -73,10 +71,24 @@ class Saved extends React.Component {
         }}
           centerComponent={<Logo />}
         />
+        {/* <Button
+        onPress ={()=>dispatch(increment(5))}
+        /> */}
+        {/* <Text>{counter}</Text> */}
       </View >
     )
   }
 }
+// const mapStateToProps = state => {
+// 	console.log("STATE", state.counter)
+//   return {
+//     counter: state.counter
+//   }
+// } 
 
 
 export default Saved; 
+// export default connect(mapStateToProps, {
+//   increment
+// })(Saved);
+
