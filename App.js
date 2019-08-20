@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableHighlight, TextInput} from 'react-nati
 import { f, auth, database } from './config/config.js';
 import BottomTabNavigator from './app/bottomtabnavigator.js';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -174,4 +174,5 @@ const styles = StyleSheet.create({
   },
 });
 
+export default App;
 
