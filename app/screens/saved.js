@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View, Image } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { f, auth, database, storage } from '../../config/config';
 import { Header, Icon, Button } from 'react-native-elements';
 import Logo from '../logo';
@@ -8,61 +8,99 @@ import Logo from '../logo';
 // import { connect } from 'react-redux';
 
 class Saved extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      refresh: false,
+      saved_flatlist: []
+    }
+  }
 
   static navigationOptions = {
     title: 'SAVED'
   };
 
 
-  componentDidMount = () => {
-    // this.loadFeed();
+  componentWillMount = async () => {
+    await this.loadFeed();
     console.log('saved component mounted')
+    // this.setState({
+    //   // photo_feed: photo_feed,
+    //   refresh: true,
+    //   // saved_flatlist: 'this is sample flatlist state'
+    //   saved_flatlist: [{
+    //     "id": "Dave & Buster's",
+    //     "url": "https://s3-media4.fl.yelpcdn.com/bphoto/R15MeROOjyW4zpDf6APyDw/o.jpg",
+    //   }]
+    // })
+    console.log('the state has been set')
+
   }
 
-  loadFeed = () => {
-    this.setState({
-      refresh: true,
-      photo_feed: [],
-      saved_flatlist: {} 
-      
-    });
+  loadFeed = async () => {
+    // this.setState({
+    //   refresh: true,
+    //   saved_flatlist: []
+    // });
 
     var that = this;
-    database.ref('comments').orderByChild('comment').once('value').then(function (snapshot) {
+    await database.ref('comments').orderByChild('comment').once('value').then( async function (snapshot) {
+      console.log('this is sample text inside the first await database.ref');
+      console.log('this is snapshot', snapshot)
       const exists = (snapshot.val() !== null);
-      var photo_feed = that.state.photo_feed;
       if (exists) data = snapshot.val();
+      var saved_flatlist = that.state.saved_flatlist;
       for (var photo in data) {
         for (var comments in data[photo]) {
           var userId = f.auth().currentUser.uid;
           if (data[photo][comments]['author'] === userId) {
-            database.ref('photos/' + photo).orderByChild('keyid').once('value').then(function (snapshot) {
+          //make function here
+           await database.ref('photos/' + photo).orderByChild('keyid').once('value').then(async function (snapshot) {
               const exists = (snapshot.val() !== null);
               if (exists) data = snapshot.val();
-              let savedFlatlist = []; 
-              savedFlatlist.push(data.url)
-              console.log('this is flatlist', savedFlatlist)
-
+              console.log('this is data', data )
+              saved_flatlist.push({
+                id: data.author,
+                url: data.url
+              })
+              console.log('this is flatlist', saved_flatlist)
+              await that.setState({
+                refresh: true,
+                saved_flatlist: saved_flatlist
+              })
             })
+
           }
           else {
-            console.log('this isnt correct')
+            // console.log('this isnt correct')
           }
         }
       }
-      that.setState({
-        photo_feed: photo_feed,
-        refresh: true
-      })
+      // await that.setState({
+      //   refresh: true,
+      //   saved_flatlist: saved_flatlist
+      // })
+      // that.setState({
+      //   // photo_feed: photo_feed,
+      //   refresh: true,
+      //   // saved_flatlist: 'this is sample flatlist state'
+      //   saved_flatlist: [{
+      //     "id": "Dave & Buster's",
+      //     "url": "https://s3-media4.fl.yelpcdn.com/bphoto/R15MeROOjyW4zpDf6APyDw/o.jpg",
+      //   }]
+      // })
+    console.log('this.state.saved_flatlist', this.state.saved_flatlist)
     }).catch(error => console.log())
   }
 
+  
   render() {
     // const counter = useSelector(state => state.counter);
     // const dispatch = useDispatch();
     // dispatch(displayUserFlatlist(['hi']))
-
+    console.log('this is the state', this.state)
     // console.log('this is the state', counter)
+
     return (
       <View style={{ flex: 1, backgroundColor: '#2C2A2A' }}>
         <Header containerStyle={{
@@ -71,6 +109,25 @@ class Saved extends React.Component {
         }}
           centerComponent={<Logo />}
         />
+
+        <FlatList
+          contentContainerStyle={{ alignItems: 'center' }}
+          data={this.state.saved_flatlist}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) =>
+            <View style={{ paddingTop: 15, backgroundColor: '#2C2A2A', height: 200, width: 335 }}>
+              <View style={{ backgroundColor: 'black', height: 30, justifyContent: 'center' }}>
+                <Text style={{ paddingLeft: 10, color: 'white', fontSize: 18 }}>{item.id}</Text>
+              </View>
+              <TouchableOpacity>
+                <View style={{ backgroundColor: 'black', height: 160 }}>
+                  <Image style={{ height: 160 }} source={item.url ? { uri: item.url } : null} />
+                </View>
+              </TouchableOpacity>
+            </View>
+          }
+        />
+
         {/* <Button
         onPress ={()=>dispatch(increment(5))}
         /> */}
@@ -87,7 +144,7 @@ class Saved extends React.Component {
 // } 
 
 
-export default Saved; 
+export default Saved;
 // export default connect(mapStateToProps, {
 //   increment
 // })(Saved);

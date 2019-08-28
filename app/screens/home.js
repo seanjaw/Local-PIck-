@@ -18,13 +18,13 @@ class Home extends React.Component {
 
     componentDidMount = () => {
         this.loadFeed();
-        console.log('home component mounted')
+        // console.log('home component mounted')
     }
 
  
 
     refresh = () => {
-        console.log('from the refresh function', this.state)
+        // console.log('from the refresh function', this.state)
         this.loadFeed();
     }
 
@@ -57,6 +57,7 @@ class Home extends React.Component {
         }).catch(error => console.log())
     }
     render() {
+        // console.log('this is this.state.photofeed ', this.state.photo_feed)
         return (
             <View style={{ flex: 1, backgroundColor: '#2C2A2A' }}>
                 <Header containerStyle={{
