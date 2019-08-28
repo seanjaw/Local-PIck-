@@ -31,15 +31,15 @@ class ModalScreen extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log('modal component is mounted')
+        // console.log('modal component is mounted')
     }
 
     makeYelpSearch = async () => {
         restaurantPic = await axios.get('https://api.yelp.com/v3/businesses/search' + '?term=' + this.state.name + '&location=irvine', config)
         var name = restaurantPic.data.businesses[0].name
         var imageUrl = restaurantPic.data.businesses[0].image_url
-        console.log('this is name after search', restaurantPic.data.businesses[0].name)
-        console.log('this is url after search', restaurantPic.data.businesses[0].image_url)
+        // console.log('this is name after search', restaurantPic.data.businesses[0].name)
+        // console.log('this is url after search', restaurantPic.data.businesses[0].image_url)
         this.writeUserData(name, imageUrl);
 
 
@@ -56,8 +56,8 @@ class ModalScreen extends React.Component {
 
     }
     render() {
-        console.log('this.state', this.state)
-        console.log('this.props.navigation.state', this.props.navigation.state)
+        // console.log('this.state', this.state)
+        // console.log('this.props.navigation.state', this.props.navigation.state)
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black' }}>
                 <Text style={{ fontSize: 30, color: 'white' }}>ADD RESTAURANT</Text>

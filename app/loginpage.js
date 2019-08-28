@@ -15,7 +15,7 @@ class ModalScreen extends React.Component {
         this.setState({ password: text })
     }
     login = (email, password) => {
-        console.log('email: ' + this.state.email + ' password: ' + this.state.password)
+        // console.log('email: ' + this.state.email + ' password: ' + this.state.password)
     }
 
     goBack = () => {
