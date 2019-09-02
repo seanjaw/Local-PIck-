@@ -150,14 +150,22 @@ class App extends React.Component {
                   //   </TouchableHighlight>
                   // </View>
                   <View>
-                    <View style={{ position: 'absolute', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0, height: 240, zIndex: 1, opacity: .85, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ position: 'absolute', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0, height: 240, zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}>
                       {/* <Text style={{ fontSize: 25, color: 'white', borderColor: 'white', borderWidth: 1, width: 180, textAlign: 'center', zIndex: 1 }}>Local Pick</Text> */}
                       <Text style={{ padding: 10, fontSize: 50, borderColor: 'white', borderWidth: 1, color: 'white', textAlign: 'center', width: 340 }}>Local Pick</Text>
                       <Text style={{ paddingTop: 30, fontSize: 25, color: 'white', textAlign: 'center' }}>Discover. Eat. Recommend. </Text>
                     </View>
-                    <View style={{ position: 'absolute', backgroundColor: 'black', left:0, right: 0, bottom: 0, height: 120, width: '50%', zIndex: 1, opacity: .85, justifyContent: 'center', alignItems: 'center' }}>
-                      <Text style={{color: 'white' }}>SIGN UP</Text>
+                    <View style={{ position: 'absolute', backgroundColor: '#121212', left:0, right: 0, bottom: 0, height: 120, width: '50%', zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}>
+                      <View style ={{position: 'relative' , left: '44%'}}>
+                        <Text style={{letterSpacing: 3, color: 'white', fontSize: 20 }}>SIGN UP</Text>
+                      </View>
                     </View>
+                    <View style={{ position: 'absolute', backgroundColor: 'black', left:'50%', right: '50%', bottom: 0, height: 120, width: '50%', zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}>
+                      <View style ={{position: 'relative' , right: '44%'}}>
+                        <Text style={{letterSpacing: 3, color: 'white', fontSize: 20 }}>LOGIN</Text>
+                      </View>
+                    </View>
+
                     {/* <View style={{position: 'absolute', backgroundColor: 'black', left: 0, right: 0, bottom: 0, height: 120, width: '50%', zIndex: 1, opacity: .85, justifyContent:'center', alignItems: 'center' }}>
                       <Text style={{color: 'white'}}>Sign Up</Text>
                     </View> */}
