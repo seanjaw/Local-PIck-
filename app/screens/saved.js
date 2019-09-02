@@ -24,15 +24,6 @@ class Saved extends React.Component {
   componentWillMount = async () => {
     await this.loadFeed();
     console.log('saved component mounted')
-    // this.setState({
-    //   // photo_feed: photo_feed,
-    //   refresh: true,
-    //   // saved_flatlist: 'this is sample flatlist state'
-    //   saved_flatlist: [{
-    //     "id": "Dave & Buster's",
-    //     "url": "https://s3-media4.fl.yelpcdn.com/bphoto/R15MeROOjyW4zpDf6APyDw/o.jpg",
-    //   }]
-    // })
     console.log('the state has been set')
 
   }
@@ -76,19 +67,7 @@ class Saved extends React.Component {
           }
         }
       }
-      // await that.setState({
-      //   refresh: true,
-      //   saved_flatlist: saved_flatlist
-      // })
-      // that.setState({
-      //   // photo_feed: photo_feed,
-      //   refresh: true,
-      //   // saved_flatlist: 'this is sample flatlist state'
-      //   saved_flatlist: [{
-      //     "id": "Dave & Buster's",
-      //     "url": "https://s3-media4.fl.yelpcdn.com/bphoto/R15MeROOjyW4zpDf6APyDw/o.jpg",
-      //   }]
-      // })
+
     console.log('this.state.saved_flatlist', this.state.saved_flatlist)
     }).catch(error => console.log())
   }
@@ -99,7 +78,6 @@ class Saved extends React.Component {
     // const dispatch = useDispatch();
     // dispatch(displayUserFlatlist(['hi']))
     console.log('this is the state', this.state)
-    // console.log('this is the state', counter)
 
     return (
       <View style={{ flex: 1, backgroundColor: '#2C2A2A' }}>

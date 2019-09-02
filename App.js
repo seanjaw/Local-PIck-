@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, TextInput, Image } from 'react-native';
 import { f, auth, database } from './config/config.js';
 import BottomTabNavigator from './app/bottomtabnavigator.js';
 
@@ -15,7 +15,7 @@ class App extends React.Component {
     f.auth().onAuthStateChanged(function (user) {
       if (user) {
         that.setState({
-          loggedin: true
+          loggedin: false
         });
         console.log('logged in')
       } else {
@@ -84,11 +84,12 @@ class App extends React.Component {
 
 
   }
- 
+
 
   render() {
     var user = f.auth().currentUser;
     // console.log('this is the current user', user)
+
     return (
       <View style={styles.container}>
         {this.state.loggedin == true ? (
@@ -99,14 +100,14 @@ class App extends React.Component {
           //     <Text>Log Out</Text>
           //   </TouchableHighlight>
           // </View>
-       
+
           // <BottomTabNavigator/>
-          <View style= {{flex:1}}>
+          <View style={{ flex: 1 }}>
             {/* <AppContainer/> */}
-            <BottomTabNavigator/>
+            <BottomTabNavigator />
           </View>
-          
-   
+
+
 
         ) : (
             <View>
@@ -134,19 +135,38 @@ class App extends React.Component {
                 </View>
 
               ) : (
-                  <View style ={{paddingTop:40}}>
-                    <TouchableHighlight
-                      // onPress={() => this.setState({ emailloginview: true })}
-                      onPress={() => this.loginDummyUser('sjaw94@gmail.com', 'password')}
-                      style={{ backgroundColor: 'green' }}>
-                      <Text style={{ color: 'white' }}>LOGIN</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                      onPress={() => this.setState({ signupview: true })}
-                      style={{ backgroundColor: 'green' }}>
-                      <Text style={{ color: 'white' }}>SIGN UP</Text>
-                    </TouchableHighlight>
+                  // <View style ={{paddingTop:30}}>
+                  //   <Image style={{resizeMode: 'cover'}} source={require('./assets/loginpage.jpg')}/>
+                  //   <TouchableHighlight
+                  //     // onPress={() => this.setState({ emailloginview: true })}
+                  //     onPress={() => this.loginDummyUser('sjaw94@gmail.com', 'password')}
+                  //     style={{ backgroundColor: 'green' }}>
+                  //     <Text style={{ color: 'white' }}>LOGIN</Text>
+                  //   </TouchableHighlight>
+                  //   <TouchableHighlight
+                  //     onPress={() => this.setState({ signupview: true })}
+                  //     style={{ backgroundColor: 'green' }}>
+                  //     <Text style={{ color: 'white' }}>SIGN UP</Text>
+                  //   </TouchableHighlight>
+                  // </View>
+                  <View>
+                    <View style={{ position: 'absolute', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0, height: 240, zIndex: 1, opacity: .85, justifyContent: 'center', alignItems: 'center' }}>
+                      {/* <Text style={{ fontSize: 25, color: 'white', borderColor: 'white', borderWidth: 1, width: 180, textAlign: 'center', zIndex: 1 }}>Local Pick</Text> */}
+                      <Text style={{ padding: 10, fontSize: 50, borderColor: 'white', borderWidth: 1, color: 'white', textAlign: 'center', width: 340 }}>Local Pick</Text>
+                      <Text style={{ paddingTop: 30, fontSize: 25, color: 'white', textAlign: 'center' }}>Discover. Eat. Recommend. </Text>
+                    </View>
+                    <View style={{ position: 'absolute', backgroundColor: 'black', left:0, right: 0, bottom: 0, height: 120, width: '50%', zIndex: 1, opacity: .85, justifyContent: 'center', alignItems: 'center' }}>
+                      <Text style={{color: 'white' }}>SIGN UP</Text>
+                    </View>
+                    {/* <View style={{position: 'absolute', backgroundColor: 'black', left: 0, right: 0, bottom: 0, height: 120, width: '50%', zIndex: 1, opacity: .85, justifyContent:'center', alignItems: 'center' }}>
+                      <Text style={{color: 'white'}}>Sign Up</Text>
+                    </View> */}
+
+
+                    <Image style={{ flex: 1, backgroundColor: "red" }}
+                      source={require('./assets/loginpage.jpg')} resizeMode='contain' />
                   </View>
+
                 )
               }
 
@@ -170,7 +190,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-
+    alignItems: "center",
+    justifyContent: "center"
   },
 });
 
