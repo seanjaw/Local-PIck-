@@ -5,8 +5,7 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button } from 'rea
 class LoginModalScreen extends React.Component {
     state = {
         email: '',
-        password: '',
-        loggedIn: false
+        password: ''
     }
     handleEmail = (text) => {
         this.setState({ email: text })
@@ -52,7 +51,7 @@ class LoginModalScreen extends React.Component {
                         // () => this.login(this.state.email, this.state.password);
                         // () => this.combinefunction()
                         // pass the state of the function back to the app component
-                       () => this.setState({ loggedIn: true })
+                       () => this.props.loginSuccessful()
                     }>
                     <Text style={styles.submitButtonText}> Submit </Text>
                 </TouchableOpacity>
