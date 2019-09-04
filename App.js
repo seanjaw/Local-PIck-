@@ -7,27 +7,30 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedin: false, 
-      loginModal: false 
+      loggedIn: false,
+      loginModal: true
     };
 
     var that = this
     // this.registerUser('sjaw94@gmail.com', 'fakepassword')
-    f.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        that.setState({
-          loggedin: false
-        });
-        console.log('logged in')
-      } else {
-        that.setState({
-          loggedin: false
-        });
-        console.log('logged out')
-      }
-    });
+    // f.auth().onAuthStateChanged(function (user) {
+    //   if (user) {
+    //     that.setState({
+    //       loggedIn: true
+    //     });
+    //     console.log('logged in')
+    //   } else {
+    //     that.setState({
+    //       loggedIn: true
+    //     });
+    //     console.log('logged out')
+    //   }
+    // });
   }
 
+  componentDidMount = () => {
+    console.log('component mounted')
+  }
 
 
   registerUser = (email, password) => {
@@ -86,20 +89,23 @@ class App extends React.Component {
 
   }
 
-  switchtoModal = () => {
-    this.setState({
-      loginModal: true 
+  loginSuccessful = async () => {
+    await this.setState({
+      loggedIn: true,
+      loginModal: false
     })
+    console.log('the state has been changed and this is new state in app', this.state)
+
   }
 
 
   render() {
     var user = f.auth().currentUser;
-    // console.log('this is the current user', user)
+    console.log('this is the current user', user)
 
     return (
       <View style={styles.container}>
-        {this.state.loggedin == true ? (
+        {this.state.loggedIn == true ? (
           // <View>
           //   <TouchableHighlight
           //     onPress={() => this.signUserOut()}
@@ -107,49 +113,23 @@ class App extends React.Component {
           //     <Text>Log Out</Text>
           //   </TouchableHighlight>
           // </View>
-
           // <BottomTabNavigator/>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1}}>
             {/* <AppContainer/> */}
             <BottomTabNavigator />
           </View>
-
-
-
         ) : (
             <View>
-
-              {/* {this.state.emailloginview == true ? (
-
+              {this.state.loginModal == true ? (
                 <View>
-                  <Text>Email:</Text>
-                  <TextInput
-                    onChangeText={(text) => this.setState({ email: text })}
-                    value={this.state.email}
-                  />
-                  <Text>Password:</Text>
-                  <TextInput
-                    onChangeText={(text) => this.setState({ pass: text })}
-                    secureTextEntry={true}
-                    value={this.state.pass}
-                  />
-                  <TouchableHighlight
-                    onPress={() => this.loginUser(this.state.email, this.state.pass)}
-
-                    style={{ backgroundColor: 'green' }}>
-                    <Text>Log In</Text>
-                  </TouchableHighlight>
-                </View> */}
-                {this.state.loginModal == true ? (
-                  <View>
-                     <View style={{ position: 'absolute', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0, height: 240, zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}>
-                      <Text style={{ padding: 10, fontSize: 50, borderColor: 'white', borderWidth: 1, color: 'white', textAlign: 'center', width: 340 }}>Local Pick</Text>
-                      <Text style={{ paddingTop: 30, fontSize: 25, color: 'white', textAlign: 'center' }}>Discover. Eat. Recommend. </Text>
-                    </View>
-                    <LoginModalScreen/>
-                    <Image style={{ flex: 1 }}
-                      source={require('./assets/loginpage.jpg')} resizeMode='contain' />
+                  <View style={{ position: 'absolute', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0, height: 240, zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ padding: 10, fontSize: 50, borderColor: 'white', borderWidth: 1, color: 'white', textAlign: 'center', width: 340 }}>Local Pick</Text>
+                    <Text style={{ paddingTop: 30, fontSize: 25, color: 'white', textAlign: 'center' }}>Discover. Eat. Recommend. </Text>
                   </View>
+                  <LoginModalScreen loginSuccessful={this.loginSuccessful} />
+                  <Image style={{ flex: 1 }}
+                    source={require('./assets/loginpage.jpg')} resizeMode='contain' />
+                </View>
 
               ) : (
                   <View>
@@ -169,35 +149,20 @@ class App extends React.Component {
                       // onPress={() => this.setState({ emailloginview: true })}
                       // onPress={() => this.loginDummyUser('sjaw94@gmail.com', 'password')}
                       onPress={() => this.setState({ loginModal: true })}
-  
-                      //when you press the button, it hides the button component and shows the modal component.
-                      //when you click loggin, it loads another component. if login is true in that component, then it switches the state to login true and it loads the app 
-
                     >
                       <View style={{ position: 'relative', right: '44%' }}>
                         <Text style={{ letterSpacing: 3, color: 'white', fontSize: 20 }}>LOGIN</Text>
                       </View>
                     </TouchableHighlight>
-
                     <Image style={{ flex: 1 }}
                       source={require('./assets/loginpage.jpg')} resizeMode='contain' />
                   </View>
-
                 )
               }
-
-
-
-
             </View>
           )
         }
       </View>
-
-
-
-
-
     );
   }
 }
@@ -205,9 +170,9 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: 'red'
+    // alignItems: "center",
+    // justifyContent: "center"
   },
 });
 
