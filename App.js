@@ -2,12 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, TextInput, Image } from 'react-native';
 import { f, auth, database } from './config/config.js';
 import BottomTabNavigator from './app/bottomtabnavigator.js';
-
+import LoginModalScreen from './app/loginpage';
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedin: false
+      loggedin: false, 
+      loginModal: false 
     };
 
     var that = this
@@ -85,6 +86,12 @@ class App extends React.Component {
 
   }
 
+  switchtoModal = () => {
+    this.setState({
+      loginModal: true 
+    })
+  }
+
 
   render() {
     var user = f.auth().currentUser;
@@ -112,7 +119,7 @@ class App extends React.Component {
         ) : (
             <View>
 
-              {this.state.emailloginview == true ? (
+              {/* {this.state.emailloginview == true ? (
 
                 <View>
                   <Text>Email:</Text>
@@ -132,12 +139,21 @@ class App extends React.Component {
                     style={{ backgroundColor: 'green' }}>
                     <Text>Log In</Text>
                   </TouchableHighlight>
-                </View>
+                </View> */}
+                {this.state.loginModal == true ? (
+                  <View>
+                     <View style={{ position: 'absolute', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0, height: 240, zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}>
+                      <Text style={{ padding: 10, fontSize: 50, borderColor: 'white', borderWidth: 1, color: 'white', textAlign: 'center', width: 340 }}>Local Pick</Text>
+                      <Text style={{ paddingTop: 30, fontSize: 25, color: 'white', textAlign: 'center' }}>Discover. Eat. Recommend. </Text>
+                    </View>
+                    <LoginModalScreen/>
+                    <Image style={{ flex: 1 }}
+                      source={require('./assets/loginpage.jpg')} resizeMode='contain' />
+                  </View>
 
               ) : (
                   <View>
                     <View style={{ position: 'absolute', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0, height: 240, zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}>
-                      {/* <Text style={{ fontSize: 25, color: 'white', borderColor: 'white', borderWidth: 1, width: 180, textAlign: 'center', zIndex: 1 }}>Local Pick</Text> */}
                       <Text style={{ padding: 10, fontSize: 50, borderColor: 'white', borderWidth: 1, color: 'white', textAlign: 'center', width: 340 }}>Local Pick</Text>
                       <Text style={{ paddingTop: 30, fontSize: 25, color: 'white', textAlign: 'center' }}>Discover. Eat. Recommend. </Text>
                     </View>
@@ -150,15 +166,20 @@ class App extends React.Component {
                       </View>
                     </TouchableHighlight>
                     <TouchableHighlight style={{ position: 'absolute', backgroundColor: '#070707', left: '50%', right: '50%', bottom: 0, height: 120, width: '50%', zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}
-                      onPress={() => this.setState({ emailloginview: true })}
-                      onPress={() => this.loginDummyUser('sjaw94@gmail.com', 'password')}
+                      // onPress={() => this.setState({ emailloginview: true })}
+                      // onPress={() => this.loginDummyUser('sjaw94@gmail.com', 'password')}
+                      onPress={() => this.setState({ loginModal: true })}
+  
+                      //when you press the button, it hides the button component and shows the modal component.
+                      //when you click loggin, it loads another component. if login is true in that component, then it switches the state to login true and it loads the app 
+
                     >
                       <View style={{ position: 'relative', right: '44%' }}>
                         <Text style={{ letterSpacing: 3, color: 'white', fontSize: 20 }}>LOGIN</Text>
                       </View>
                     </TouchableHighlight>
 
-                    <Image style={{ flex: 1, backgroundColor: "red" }}
+                    <Image style={{ flex: 1 }}
                       source={require('./assets/loginpage.jpg')} resizeMode='contain' />
                   </View>
 

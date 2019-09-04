@@ -2,11 +2,11 @@ import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; // 1.0.0-beta.27
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button } from 'react-native'
 
-class ModalScreen extends React.Component {
+class LoginModalScreen extends React.Component {
     state = {
         email: '',
-        password: ''
-        
+        password: '',
+        loggedIn: false
     }
     handleEmail = (text) => {
         this.setState({ email: text })
@@ -18,20 +18,20 @@ class ModalScreen extends React.Component {
         // console.log('email: ' + this.state.email + ' password: ' + this.state.password)
     }
 
-    goBack = () => {
-        this.props.navigation.goBack()
-    }
+    // goBack = () => {
+    //     this.props.navigation.goBack()
+    // }
 
-    combinefunction = () => {
-        this.login();
-        this.goBack();
-    }
+    // combinefunction = () => {
+    //     this.login();
+    //     this.goBack();
+    // }
 
 
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black'}}>
-                <Text style={{ fontSize: 30, color: 'white' }}>ADD RESTAURANT</Text>
+            <View style={{ position: 'absolute', opacity: .9, top: '35%', left: '45.20%', right: 0, bottom: 0, width: 350,height: 500, zIndex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black'}}>
+                <Text style={{ fontSize: 30, color: 'white' }}>LOGIN</Text>
                 <TextInput style={styles.input}
                     underlineColorAndroid="transparent"
                     placeholder="Email"
@@ -50,7 +50,9 @@ class ModalScreen extends React.Component {
                     style={styles.submitButton}
                     onPress={
                         // () => this.login(this.state.email, this.state.password);
-                        () => this.combinefunction()
+                        // () => this.combinefunction()
+                        // pass the state of the function back to the app component
+                       () => this.setState({ loggedIn: true })
                     }>
                     <Text style={styles.submitButtonText}> Submit </Text>
                 </TouchableOpacity>
@@ -86,4 +88,4 @@ const styles = StyleSheet.create({
  })
  
 
-export default ModalScreen;
+export default LoginModalScreen;
