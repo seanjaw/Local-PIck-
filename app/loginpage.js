@@ -29,7 +29,7 @@ class LoginModalScreen extends React.Component {
 
     render() {
         return (
-            <View style={{ position: 'absolute', opacity: .9, top: '35%', left: '45.20%', right: 0, bottom: 0, width: 350,height: 500, zIndex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black'}}>
+            <View style={{ position: 'absolute', opacity: .9, top: 300, left: '7.25%', right: 0, bottom: 0, width: 350,height: 500, zIndex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black'}}>
                 <Text style={{ fontSize: 30, color: 'white' }}>LOGIN</Text>
                 <TextInput style={styles.input}
                     underlineColorAndroid="transparent"

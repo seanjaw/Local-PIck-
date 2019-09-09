@@ -121,14 +121,14 @@ class App extends React.Component {
         ) : (
             <View>
               {this.state.loginModal == true ? (
-                <View>
+                <View >
                   <View style={{ position: 'absolute', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0, height: 240, zIndex: 1, opacity: .9, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={{ padding: 10, fontSize: 50, borderColor: 'white', borderWidth: 1, color: 'white', textAlign: 'center', width: 340 }}>Local Pick</Text>
                     <Text style={{ paddingTop: 30, fontSize: 25, color: 'white', textAlign: 'center' }}>Discover. Eat. Recommend. </Text>
                   </View>
                   <LoginModalScreen loginSuccessful={this.loginSuccessful} />
-                  <Image style={{ flex: 1 }}
-                    source={require('./assets/loginpage.jpg')} resizeMode='contain' />
+                    <Image style={{ position: 'absolute', backgroundColor: 'black', height: 2000, width: 600,top: -550 , left: -100, right: 0, bottom: 0}}
+                      source={require('./assets/loginpage.jpg')} resizeMode='contain' />
                 </View>
 
               ) : (
@@ -154,8 +154,12 @@ class App extends React.Component {
                         <Text style={{ letterSpacing: 3, color: 'white', fontSize: 20 }}>LOGIN</Text>
                       </View>
                     </TouchableHighlight>
-                    <Image style={{ flex: 1 }}
+                    <Image style={{ position: 'relative', backgroundColor: 'black', top: 0, left: 0, right: 0, bottom: 0,flex: 1, zIndex:20, justifyContent: 'center', alignItems: 'center'}}
                       source={require('./assets/loginpage.jpg')} resizeMode='contain' />
+                      {/* <Image style={{ zIndex:20 , width: 200, height: 600}}
+                      source={require('./assets/loginpage.jpg')} /> */}
+                    {/* <Image style={{ flex: 1 }}
+                    source={require('./assets/loginpage.jpg')} resizeMode='contain' /> */}
                   </View>
                 )
               }
@@ -170,7 +174,8 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red'
+    backgroundColor: 'red',
+    // style ={{backgroundImage: 'url(./assets/loginpage.jpg)'}}
     // alignItems: "center",
     // justifyContent: "center"
   },
