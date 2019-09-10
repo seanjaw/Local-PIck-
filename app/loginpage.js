@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation'; // 1.0.0-beta.27
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button } from 'react-native'
+import { f, auth, database } from '../config/config';
 
 class LoginModalScreen extends React.Component {
     state = {
@@ -25,9 +26,51 @@ class LoginModalScreen extends React.Component {
     //     this.login();
     //     this.goBack();
     // }
-
+    
+    loginDummyUser = async (email, password) => {
+        console.log('email', email)
+        console.log('password', password)
+        if (email != '' && password != '') {
+          //
+          try {
+            let user = await auth.signInWithEmailAndPassword(email, password);
+            console.log(user);
+          }
+          catch (error) {
+            console.log(error)
+          }
+        }
+        else {
+          alert('missing email or password')
+        }
+    
+    
+      }
+      loginUser = async (email, password) => {
+        console.log('email', email)
+        console.log('password', password)
+        if (email != '' && password != '') {
+          //
+          try {
+            let user = await auth.signInWithEmailAndPassword(email, password);
+            console.log(user);
+            if (user){
+                this.props.loginSuccessful();
+            }
+          }
+          catch (error) {
+            console.log(error)
+          }
+        }
+        else {
+          alert('missing email or password')
+        }
+    
+    
+      }
 
     render() {
+        console.log('this is new state', this.state)
         return (
             <View style={{ position: 'absolute', opacity: .9, top: 300, left: '7.25%', right: 0, bottom: 0, width: 350,height: 500, zIndex: 1, backgroundColor: 'black'}}>
                 <Text style={{marginLeft: 25 ,marginTop: 100,color:'white'}}>Username</Text>
@@ -44,7 +87,8 @@ class LoginModalScreen extends React.Component {
                         // () => this.login(this.state.email, this.state.password);
                         // () => this.combinefunction()
                         // pass the state of the function back to the app component
-                       () => this.props.loginSuccessful()
+                        ()=> this.loginUser(this.state.email, this.state.password)
+                    //    () => this.props.loginSuccessful()
                     }>
                     <Text style={styles.submitButtonText}> LOGIN </Text>
                 </TouchableOpacity>
