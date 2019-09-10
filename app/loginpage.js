@@ -29,22 +29,15 @@ class LoginModalScreen extends React.Component {
 
     render() {
         return (
-            <View style={{ position: 'absolute', opacity: .9, top: 300, left: '7.25%', right: 0, bottom: 0, width: 350,height: 500, zIndex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black'}}>
-                <Text style={{ fontSize: 30, color: 'white' }}>LOGIN</Text>
+            <View style={{ position: 'absolute', opacity: .9, top: 300, left: '7.25%', right: 0, bottom: 0, width: 350,height: 500, zIndex: 1, backgroundColor: 'black'}}>
+                <Text style={{marginLeft: 25 ,marginTop: 100,color:'white'}}>Username</Text>
                 <TextInput style={styles.input}
-                    underlineColorAndroid="transparent"
-                    placeholder="Email"
-                    placeholderTextColor="white"
                     autoCapitalize="none"                    
                     onChangeText={this.handleEmail} />
-
+                <Text style={{marginLeft: 25 ,marginTop: 30,color:'white'}}>Password</Text>
                 <TextInput style={styles.input}
-                    underlineColorAndroid="transparent"
-                    placeholder="Password"
-                    placeholderTextColor="white"
                     autoCapitalize="none"
                     onChangeText={this.handlePassword} />
-
                 <TouchableOpacity
                     style={styles.submitButton}
                     onPress={
@@ -53,7 +46,7 @@ class LoginModalScreen extends React.Component {
                         // pass the state of the function back to the app component
                        () => this.props.loginSuccessful()
                     }>
-                    <Text style={styles.submitButtonText}> Submit </Text>
+                    <Text style={styles.submitButtonText}> LOGIN </Text>
                 </TouchableOpacity>
                 {/* <Button
                     onPress={() => this.props.navigation.goBack()}
@@ -66,23 +59,36 @@ class LoginModalScreen extends React.Component {
 
 const styles = StyleSheet.create({
     input: {
-       margin: 15,
+       margin: 25,
+       marginTop: 10,
        height: 40,
        borderColor: 'white',
        borderWidth: 1,
        width: 300,
-       color: 'white'
+       color: 'black',
+       backgroundColor:'white',
+       alignContent: 'center',
+       justifyContent: 'center'
     },
     submitButton: {
        backgroundColor: 'transparent',
        padding: 10,
-       margin: 15,
+    //    margin: 25,
        height: 40,
+       width: 100,
+       left: '36%', 
+       right: '50%',
        borderWidth: 1,
-       borderColor: 'white'
+       borderColor: 'black',
+    //    flexDirection:'row',
+    //    alignItems:'center'
+    //    alignContent: 'center',
+    //    justifyContent:'center'
     },
     submitButtonText:{
-       color: 'white'
+       color: 'white',
+       textAlign:'center',
+       letterSpacing: 3
     }
  })
  
