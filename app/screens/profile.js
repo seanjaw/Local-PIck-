@@ -9,6 +9,22 @@ class Profile extends React.Component {
         title: 'PROFILE'
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            title_feed:[],
+            refresh: false
+        }
+    }
+
+    loadtitles = () =>{
+
+    }
+    refresh = () => {
+        // console.log('from the refresh function', this.state)
+        this.loadFeed();
+    }
+
 
     render() {
         var user = f.auth().currentUser;
@@ -53,7 +69,7 @@ class Profile extends React.Component {
 
                 <Text style={{ color: 'white', fontSize: 28, padding: 30 }}>{user.email}</Text>
                 <Text style={{ color: 'white', fontSize: 18 }}>All Picks:</Text>
-                <View style={{ backgroundColor: 'black', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center' }}>
+                {/* <View style={{ backgroundColor: 'black', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style ={{fontSize: 25, color: 'white' , borderColor: 'white', borderWidth: 1, width: 250, textAlign: 'center'}}>Chipotle</Text>
                 </View>
                 <View style={{ backgroundColor: 'black', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center' }}>
@@ -61,7 +77,7 @@ class Profile extends React.Component {
                 </View>
                 <View style={{ backgroundColor: 'black', borderColor: 'lightgrey', borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style ={{fontSize: 25, color: 'white' , borderColor: 'white', borderWidth: 1, width: 250, textAlign: 'center'}}>McDonald's</Text>
-                </View>
+                </View> */}
 
 
 
